@@ -1,0 +1,16 @@
+<%- include("layout", {
+  title: "Home",
+  body: `
+    <section class="card">
+      <h1>Connect across cultures on campus</h1>
+      <p>A simple hub for campus cultural events: discover, join, and share.</p>
+      <div class="actions">
+        ${(typeof user !== "undefined" && user)
+          ? `<a class="btn" href="/events">Go to Events</a>`
+          : `<a class="btn" href="/signup">Create account</a>
+             <a class="btn secondary" href="/login">Login</a>`
+        }
+      </div>
+    </section>
+  `
+}) %>

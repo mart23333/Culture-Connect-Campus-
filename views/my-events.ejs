@@ -1,0 +1,41 @@
+<%- include("layout", {
+  title: "My Events",
+  body: `
+    <section class="card">
+      <div class="row">
+        <h2>My Events</h2>
+        <a class="btn" href="/events/new">Create Event</a>
+      </div>
+
+      ${events.length === 0 ? `<p>You haven't created any events yet.</p>` : `
+        <div class="list">
+          ${events.map(e => `
+            <article class="item">
+              <div class="item-head">
+                <h3>${e.title}</h3>
+                <span class="pill">${e.category}</span>
+              </div>
+
+              <p class="muted">
+                <strong>When:</strong> ${String(e.start_time).replace("T"," ")}
+                • <strong>Where:</strong> ${e.location}
+              </p>
+
+              <p>${e.description}</p>
+
+              <div class="row">
+                <p class="muted small"><strong>${e.rsvp_count}</strong> interested</p>
+                <div class="inline">
+                  <a class="btn secondary" href="/events/${e.id}/edit">Edit</a>
+                  <form method="POST" action="/events/${e.id}/delete" class="inline" onsubmit="return confirm('Delete this event?');">
+                    <button class="btn danger" type="submit">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `}
+    </section>
+  `
+}) %>

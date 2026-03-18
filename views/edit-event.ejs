@@ -1,0 +1,38 @@
+<%- include("layout", {
+  title: "Edit Event",
+  body: `
+    <section class="card">
+      <h2>Edit event</h2>
+      ${error ? `<p class="error">${error}</p>` : ``}
+
+      <form method="POST" action="/events/${event.id}/edit" class="form">
+        <label>Title (max 120)
+          <input name="title" required maxlength="120" value="${(event.title || "").replace(/"/g, "&quot;")}" />
+        </label>
+
+        <label>Description (max 1000)
+          <textarea name="description" rows="4" required maxlength="1000">${event.description || ""}</textarea>
+        </label>
+
+        <label>Location (max 120)
+          <input name="location" required maxlength="120" value="${(event.location || "").replace(/"/g, "&quot;")}" />
+        </label>
+
+        <label>Start time
+          <input name="start_time" type="datetime-local" required value="${event.start_time || ""}" />
+        </label>
+
+        <label>Category
+          <select name="category" required>
+            ${["Food","Language Exchange","Music","Festival","Workshop","Other"].map(c =>
+              `<option ${c===event.category ? "selected":""}>${c}</option>`
+            ).join("")}
+          </select>
+        </label>
+
+        <button class="btn" type="submit">Save changes</button>
+        <a class="btn secondary" href="/events/mine">Cancel</a>
+      </form>
+    </section>
+  `
+}) %>

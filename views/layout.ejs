@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title || "CultureConnect Campus" %></title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a href="/">CultureConnect Campus</a></div>
+    <nav class="nav">
+      <% if (typeof user !== "undefined" && user) { %>
+        <a href="/events">Events</a>
+        <a href="/events/new">Create Event</a>
+        <form action="/logout" method="POST" class="inline">
+          <button class="linklike" type="submit">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a class="btn" href="/signup">Sign up</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+</body>
+</html>

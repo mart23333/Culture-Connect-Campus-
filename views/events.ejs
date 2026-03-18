@@ -1,0 +1,58 @@
+<%- include("layout", {
+  title: "Events",
+  user: user,
+  body: `
+    <section class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <h2>Campus Events</h2>
+        <a class="btn" href="/events/new">Create Event</a>
+      </div>
+
+      <form method="GET" action="/events" style="margin:16px 0; display:flex; gap:10px; flex-wrap:wrap;">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search events by title, category, location..."
+          value="${q || ""}"
+          style="padding:10px; border:1px solid #ddd; border-radius:8px; min-width:280px;"
+        />
+        <button class="btn" type="submit">Search</button>
+      </form>
+
+      ${
+        events.length === 0
+          ? `<p>No events found. Be the first to create one.</p>`
+          : `
+            <div style="margin-top:15px;">
+              ${events.map(e => `
+                <div class="event-card">
+                  <span class="category">${e.category}</span>
+
+                  <h3 style="margin:0 0 10px 0;">${e.title}</h3>
+
+                  <p><strong>Location:</strong> ${e.location}</p>
+                  <p><strong>Date:</strong> ${e.start_time}</p>
+                  <p>${e.description}</p>
+                  <p><strong>Created by:</strong> ${e.creator_name || "Unknown"}</p>
+
+                  ${
+                    user && user.id === e.created_by
+                      ? `
+                        <div class="actions">
+                          <a class="btn secondary" href="/events/${e.id}/edit">Edit</a>
+
+                          <form method="POST" action="/events/${e.id}/delete" class="inline" onsubmit="return confirm('Delete this event?');">
+                            <button class="btn danger" type="submit">Delete</button>
+                          </form>
+                        </div>
+                      `
+                      : ``
+                  }
+                </div>
+              `).join("")}
+            </div>
+          `
+      }
+    </section>
+  `
+}) %>

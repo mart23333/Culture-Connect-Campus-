@@ -1,0 +1,40 @@
+<%- include("layout", {
+  title: "Create Event",
+  user: user,
+  body: `
+    <section class="card">
+      <h2>Create a cultural event</h2>
+
+      <form method="POST" action="/events/new" class="form">
+        <label>Title
+          <input name="title" required />
+        </label>
+
+        <label>Description
+          <textarea name="description" rows="4" required></textarea>
+        </label>
+
+        <label>Location
+          <input name="location" required />
+        </label>
+
+        <label>Start time
+          <input name="start_time" type="datetime-local" required />
+        </label>
+
+        <label>Category
+          <select name="category" required>
+            <option>Food</option>
+            <option>Language Exchange</option>
+            <option>Music</option>
+            <option>Festival</option>
+            <option>Workshop</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <button class="btn" type="submit">Publish</button>
+      </form>
+    </section>
+  `
+}) %>
