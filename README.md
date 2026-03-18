@@ -1,5 +1,5 @@
 # Culture-Connect-Campus-
-Culture Connect Campusis a web application platform that help students discover and share cultural events on event. the platform allows students to create
+Culture Connect Campus is  a web application platform that help students discover and share cultural events on event. the platform allows students to create
 and search for events and also connect others who share similar cultural interests.
 The main goal of the  project is to improve cultral engagementand make it easy for students to integrate fast into campus envronment.
 
@@ -37,7 +37,7 @@ npm start
 application will run on http://localhost:3000
 
 # Running test
-Test can be done sing jest and supertest to verify important routes in the application if the work work correctly 
+Test can be done sing jest and supertest to verify important routes in the application if the work work correctly. 
 Run test using
 npm test
 
